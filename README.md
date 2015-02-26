@@ -1,5 +1,4 @@
 # Protoschedule
-=========
 a weekly schedule prototyper package (written in Go)
 
 With this software you can define a prototypical weekly schedule in JSON and then determine if a particular time falls within. Intervals within the schedule (shifts) can be labeled.
