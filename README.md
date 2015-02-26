@@ -1,6 +1,6 @@
 # Protoschedule
 =========
-#### a weekly schedule prototyper package (written in Go)
+a weekly schedule prototyper package (written in Go)
 
 With this software you can define a prototypical weekly schedule in JSON and then determine if a particular time falls within. Intervals within the schedule (shifts) can be labeled.
 
@@ -62,7 +62,7 @@ See the test fixtures for more examples and protoschedule_test.go for example us
 
 One interesting use of the protoschedule is as a replacement to crontab-style libraries. For instance, the following code could be implemented to invoke a procedure only during the defined schedule.
 
-```json
+```golang
 	sd, _ := New(jsonString)
 	ticker := time.NewTicker(time.Minute)
 	go func() {
