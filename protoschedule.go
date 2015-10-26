@@ -82,8 +82,9 @@ func NewFromTime(jsonString string, t time.Time) (sd *ScheduleDefinition, err er
 // Loads new intervals from the defined prototype schedule, based on the time supplied
 func (sd *ScheduleDefinition) loadNew(t time.Time) (err error) {
 	epoch := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, time.Local)
-	daysToMonday := int((t.Weekday() - time.Monday) * 24)
-	epoch = epoch.Add(-(time.Duration(time.Hour) * time.Duration(daysToMonday)))
+	for epoch.Weekday() != time.Monday {
+		epoch = epoch.AddDate(0, 0, -1)
+	}
 	for _, value := range [...][]IntervalJSONEncoding{sd.Schedule.Mon, sd.Schedule.Tue, sd.Schedule.Wed, sd.Schedule.Thu, sd.Schedule.Fri, sd.Schedule.Sat, sd.Schedule.Sun} {
 		for _, interval := range value {
 			var start, base time.Time
